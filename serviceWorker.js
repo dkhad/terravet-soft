@@ -26,7 +26,7 @@ const assets = [
     '/fonts/fontawesome-webfont.svg',
     '/fonts/fontawesome-webfont.ttf',
     '/fonts/fontawesome-webfont.woff',
-    '/fonts/fontawesome-webfont.woff2',
+    '/fonts/fontawesome-webfont.woff2'
 ];
 
 self.addEventListener('install', installEvent => {
