@@ -7,7 +7,6 @@
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
-//   "orientation": "portrait-primary",
   "orientation": "natural",
   "icons": [
     {
@@ -15,11 +14,6 @@
       "type": "image/png",
       "sizes": "32x32"
     },
-//     {
-//         "src": "favicon.ico",
-//         "type": "image/x-icon",
-//         "sizes": "64x64"
-//     },
     {
       "src": "images/icons/icon-72.png",
       "type": "image/png",
