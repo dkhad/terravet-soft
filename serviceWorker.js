@@ -31,8 +31,8 @@ self.addEventListener('install', installEvent => {
        */
 
         caches.open(staticTerraVetSoft).then(cache => {
-            cache.add(assets[0]);
-            cache.add(assets[1]);
+            cache.add('/terravet-soft' + assets[0]);
+            cache.add('/terravet-soft' + assets[1]);
             cache.add(assets[2]);
             cache.add(assets[3]);
         })
