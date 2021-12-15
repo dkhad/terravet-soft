@@ -1,15 +1,14 @@
-const container = document.querySelector('.container');
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker
-            .register('serviceWorker.js', { scope: '/terravet-soft/' })
-            .then(res => console.log('service worker registered'))
-            .catch(err => console.log('service worker not registered', err));
-    });
-}
-
 jQuery(function($) {
+    // register service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker
+                .register('serviceWorker.js', { scope: '/terravet-soft/' })
+                .then(res => console.log('service worker registered'))
+                .catch(err => console.log('service worker not registered', err));
+        });
+    }
+
     $('#reset').click(function() {
         const $input = $('input');
 
