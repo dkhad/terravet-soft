@@ -24,9 +24,10 @@ const assets = [
 
 self.addEventListener('install', installEvent => {
     installEvent.waitUntil(
-        caches.open(staticTerraVetSoft).then(cache => {
-            cache.addAll(assets);
-        })
+        caches
+            .open(staticTerraVetSoft)
+            .then(cache => cache.addAll(assets))
+            .catch(err => console.log('service worker not registered', err))
     );
 });
 
