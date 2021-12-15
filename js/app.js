@@ -3,7 +3,7 @@ jQuery(function($) {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker
-                .register('serviceWorker.js', { scope: '/terravet-soft/' })
+                .register('serviceWorker.js', { scope: '/terravet-soft' })
                 .then(res => console.log('service worker registered'))
                 .catch(err => console.log('service worker not registered', err));
         });
