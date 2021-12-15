@@ -1,4 +1,4 @@
-const staticTerraVetSoft = 'static-terravet-soft';
+const staticTerraVetSoft = 'static-terravet-soft-v1';
 
 const assets = [
     '/',
@@ -24,10 +24,18 @@ const assets = [
 
 self.addEventListener('install', installEvent => {
     installEvent.waitUntil(
+        /*
         caches
             .open(staticTerraVetSoft)
             .then(cache => cache.addAll(assets))
-            .catch(err => console.log('service worker not registered', err))
+       */
+
+        caches.open(staticTerraVetSoft).then(cache => {
+            cache.add(assets[0]);
+            cache.add(assets[1]);
+            cache.add(assets[2]);
+            cache.add(assets[3]);
+        })
     );
 });
 
