@@ -15,14 +15,14 @@ jQuery(function($) {
         $input.val('');
         $input.removeClass('is-danger');
 
-        $('#result').text('Результат');
+        $('#result').html('&nbsp;');
     });
 
     $('#calculate').click(function() {
         $('input').removeClass('is-danger');
 
         const $result = $('#result');
-        $result.text('Результат');
+        $result.html('&nbsp;');
 
         if (validate()) {
             const dose = parseFloat($('#dose').val());
