@@ -1,6 +1,12 @@
 const staticTerraVetSoftCacheKey = 'static-terravet-soft-v5';
 const basePath = '/terravet-soft';
 
+// https://stackoverflow.com/questions/41009167/what-is-the-use-of-self-clients-claim
+// self.clients.claim() makes the service worker take control of the page when you first register a service worker.
+// If there is already a service worker on the page, it will make no difference.
+// self.skipWaiting() makes a new service worker replace an old one.
+// Without it, you would have to close the page (and any other open tabs containing a page in the same scope) before the new service worker was activated.
+
 const assets = [
     basePath,
     `${basePath}/index.html`,
@@ -24,7 +30,8 @@ const assets = [
 ];
 
 self.addEventListener('install', installEvent => {
-    self.skipWaiting();
+    // self.skipWaiting() would be used to immediately apply an update to an existing serviceWorker
+    self.skipWaiting(); // change an old service worker to the new one
 
     installEvent.waitUntil(
         caches
@@ -34,6 +41,9 @@ self.addEventListener('install', installEvent => {
 });
 
 self.addEventListener('activate', activateEvent => {
+    // clients.claim() would be used for taking control immediately on the first load.
+    self.clients.claim();
+
     // Delete old caches, keep staticTerraVetSoftCacheKey only
     console.log('service worker activated');
     activateEvent.waitUntil(
