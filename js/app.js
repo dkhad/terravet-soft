@@ -1,4 +1,6 @@
 jQuery(function($) {
+    $('#dose').focus();
+
     // register service worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -33,6 +35,15 @@ jQuery(function($) {
             const result = (dose * weight * capacity) / (16.64 * speed);
             $result.text(result.toFixed(2));
         }
+    });
+
+    $('.delete').click(function() {
+        const $input = $(this).parent().prev();
+
+        $input.val('');
+        $input.removeClass('is-danger');
+
+        $('#result').html('&nbsp;');
     });
 
     function validate() {

@@ -1,4 +1,4 @@
-const staticTerraVetSoft = 'static-terravet-soft-v1';
+const staticTerraVetSoft = 'static-terravet-soft-v2';
 const basePath = '/terravet-soft';
 
 const assets = [
