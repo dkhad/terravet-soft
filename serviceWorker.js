@@ -31,10 +31,10 @@ self.addEventListener('install', installEvent => {
     );
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', activateEvent => {
     // Delete old caches, keep staticTerraVetSoftCacheKey only
-    event.waitUntil(
-        caches.keys().then((keyList) => {
+    activateEvent.waitUntil(
+        caches.keys().then(keyList => {
             return Promise.all(keyList.map((key) => {
                 if (staticTerraVetSoftCacheKey.indexOf(key) === -1) {
                     return caches.delete(key);
