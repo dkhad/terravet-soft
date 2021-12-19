@@ -38,6 +38,7 @@ jQuery(function($) {
     });
 
     $('.delete').click(function() {
+        alert('delete');
         const $input = $(this).parent().prev();
 
         $input.val('');
