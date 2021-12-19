@@ -45,11 +45,9 @@ self.addEventListener('activate', activateEvent => {
     // self.clients.claim();
 
     // Delete old caches, keep staticTerraVetSoftCacheKey only
-    console.log('service worker activated');
     activateEvent.waitUntil(
         caches.keys().then(keyList => {
             return Promise.all(keyList.map(key => {
-                console.log(key);
                 if (staticTerraVetSoftCacheKey.indexOf(key) < 0) {
                     return caches.delete(key);
                 }
