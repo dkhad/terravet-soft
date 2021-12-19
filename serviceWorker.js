@@ -1,4 +1,4 @@
-const staticTerraVetSoft = 'static-terravet-soft-v3';
+const staticTerraVetSoftCacheKey = 'static-terravet-soft-v4';
 const basePath = '/terravet-soft';
 
 const assets = [
@@ -26,15 +26,34 @@ const assets = [
 self.addEventListener('install', installEvent => {
     installEvent.waitUntil(
         caches
-            .open(staticTerraVetSoft)
+            .open(staticTerraVetSoftCacheKey)
             .then(cache => cache.addAll(assets))
     );
 });
 
+self.addEventListener('activate', (event) => {
+    // Delete old caches, keep staticTerraVetSoftCacheKey only
+    event.waitUntil(
+        caches.keys().then((keyList) => {
+            return Promise.all(keyList.map((key) => {
+                if (staticTerraVetSoftCacheKey.indexOf(key) === -1) {
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+});
+
 self.addEventListener('fetch', fetchEvent => {
+    // Cache-First Strategy
+
+    // default behaviour: request the network
+    // fetchEvent.respondWith(fetch(event.request));
+
+    // custom behaviour
     fetchEvent.respondWith(
         caches
-            .match(fetchEvent.request)
-            .then(response => response || fetch(fetchEvent.request))
+            .match(fetchEvent.request) // check if the request has already been cached
+            .then(cached => cached || fetch(fetchEvent.request)) // otherwise request network
     );
 });
