@@ -31,7 +31,7 @@ const assets = [
 
 self.addEventListener('install', installEvent => {
     // self.skipWaiting() would be used to immediately apply an update to an existing serviceWorker
-    self.skipWaiting(); // change an old service worker to the new one
+    // self.skipWaiting(); // change an old service worker to the new one
 
     installEvent.waitUntil(
         caches
@@ -42,7 +42,7 @@ self.addEventListener('install', installEvent => {
 
 self.addEventListener('activate', activateEvent => {
     // clients.claim() would be used for taking control immediately on the first load.
-    self.clients.claim();
+    // self.clients.claim();
 
     // Delete old caches, keep staticTerraVetSoftCacheKey only
     console.log('service worker activated');
