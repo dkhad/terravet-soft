@@ -1,4 +1,4 @@
-const staticTerraVetSoftCacheKey = 'static-terravet-soft-v4';
+const staticTerraVetSoftCacheKey = 'static-terravet-soft-v5';
 const basePath = '/terravet-soft';
 
 const assets = [
@@ -24,6 +24,8 @@ const assets = [
 ];
 
 self.addEventListener('install', installEvent => {
+    self.skipWaiting();
+
     installEvent.waitUntil(
         caches
             .open(staticTerraVetSoftCacheKey)
@@ -38,7 +40,7 @@ self.addEventListener('activate', activateEvent => {
         caches.keys().then(keyList => {
             return Promise.all(keyList.map(key => {
                 console.log(key);
-                if (staticTerraVetSoftCacheKey.indexOf(key) === -1) {
+                if (staticTerraVetSoftCacheKey.indexOf(key) < 0) {
                     return caches.delete(key);
                 }
             }));
